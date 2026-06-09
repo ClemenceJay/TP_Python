@@ -8,9 +8,9 @@ Pour réaliser cette analyse, le programme s'appuie sur plusieurs listes de mots
 
 Trois niveaux d'intensité sont définis pour chaque catégorie :
 
-- Intensité forte : +5 points
-- Intensité moyenne : +3 points
-- Intensité faible : +1 point
+- Intensité forte : ±5 points
+- Intensité moyenne : ±3 points
+- Intensité faible : ±1 point
 
 Cela représente au total :
 
@@ -33,22 +33,17 @@ Pour chaque liste :
 
 1. Le programme parcourt les termes qu'elle contient.
 2. Il vérifie si chaque terme est présent dans le message de l'utilisateur.
-3. Lorsqu'un terme est détecté, le score correspondant à sa pondération est ajouté :
-   - au score positif si le terme est positif
-   - au score négatif si le terme est négatif.
+3. Lorsqu'un terme est détecté, le score correspondant à sa pondération est ajouté (si positif) ou retiré (si négatif) au score total
 
-À la fin de l'analyse, deux scores sont obtenus :
-
-- Un score positif
-- Un score négatif
+À la fin de l'analyse, un score totale est obtenu
 
 ## Détermination du sentiment
 
-Une fois les scores calculés, le programme compare les deux valeurs :
+Une fois le score calculé, le programme compare :
 
-- Si le score positif est supérieur au score négatif, le sentiment est considéré comme positif.
-- Si le score négatif est supérieur au score positif, le sentiment est considéré comme négatif.
-- En cas d'égalité, le résultat est considéré comme neutre.
+- Si le score total est supérieur à 0, le sentiment est considéré comme positif.
+- Si le score total est inférieur à 0, le sentiment est considéré comme négatif.
+- S'il est égal à 0, le résultat est considéré comme neutre.
 
 ## Limites actuelles
 
@@ -73,3 +68,8 @@ Cela peut entraîner :
 - L'ajout de plusieurs scores pour une même idée exprimée ;
 - La détection simultanée de termes positifs et négatifs dans certains cas ;
 - Des résultats parfois moins précis que souhaité.
+
+### Précision de la pondération
+
+Certains mots ou expressions présents dans les différentes listes peuvent ne pas être bien classés dans la bonne liste.
+Cela peut entraîner une sous-évaluation ou une sur-estimation du sentiment de l'utilisateur.
